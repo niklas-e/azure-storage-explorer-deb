@@ -1,0 +1,4 @@
+build/
+azure-storage-explorer/
+*.tar.gz
+*.deb
