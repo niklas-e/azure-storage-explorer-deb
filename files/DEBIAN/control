@@ -1,0 +1,14 @@
+Package: azure-storage-explorer
+Version: {{versionNumber}}
+Architecture: all
+Essential: no
+Section: devel
+Priority: optional
+Depends: libsecret-1-0, libgconf-2-4
+Maintainer: Microsoft Corporation
+Installed-Size: {{packageSize}}
+Description: Microsoft Azure Storage Explorer
+ - Access multiple accounts and subscriptions across Azure, Azure Stack, and the sovereign Cloud
+ - Create, delete, view, and edit storage resources
+ - View and edit Blob, Queue, Table, File, Cosmos DB storage and Data Lake Storage
+ - More at https://azure.microsoft.com/en-us/features/storage-explorer/

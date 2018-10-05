@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Link to the binary
+ln -sf '/opt/azure-storage-explorer/StorageExplorer' '/usr/local/bin/azure-storage-explorer'
+

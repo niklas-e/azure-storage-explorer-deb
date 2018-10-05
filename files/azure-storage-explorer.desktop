@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version={{versionNumber}}
+Name=Azure Storage Explorer
+Comment=Microsoft Azure Storage Explorer
+Exec=/opt/azure-storage-explorer/StorageExplorer
+StartupNotify=false
+Terminal=false
+Categories=Programming;Development;Utility;
+Icon=azure-storage-explorer
+StartupWMClass=azure-storage-explorer
+
