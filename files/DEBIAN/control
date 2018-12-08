@@ -4,7 +4,7 @@ Architecture: all
 Essential: no
 Section: devel
 Priority: optional
-Depends: libsecret-1-0, libgconf-2-4
+Depends: libsecret-1-0, libgconf-2-4, libgnome-keyring-common, libgnome-keyring0
 Maintainer: Microsoft Corporation
 Installed-Size: {{packageSize}}
 Description: Microsoft Azure Storage Explorer
