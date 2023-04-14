@@ -8,7 +8,7 @@ It's annoying to get a tarball to install a program. You won't get menu items, p
 
 ## Notes
 
-Initially from @niklas-e. Updated and enhanced with workflow by @kitingChris.
+Initially from [@niklas-e](https://github.com/niklas-e). Updated and enhanced with workflow by [@kitingChris](https://github.com/kitingChris)´.
 
 ## How to use
 
