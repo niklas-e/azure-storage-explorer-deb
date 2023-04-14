@@ -1,22 +1,40 @@
 #!/bin/bash
 
-while getopts ":v:" opt; do
+usage() { echo "Usage: $0 [-f <tarFile>]" 1>&2; exit 1; }
+while getopts ":f:" opt; do
   case $opt in
-    v) buildVersion="$OPTARG"
+    f) tarFile="$OPTARG"
     ;;
-    \?) echo "Invalid option -$OPTARG" >&2
+    *) usage
     ;;
   esac
 done
 
-if [ -z "$buildVersion" ]; then
-    echo "Missing version argument (-v)"
+if ! command -v jq >/dev/null 2>&1 ; then
+    echo "jq not found."
+fi
+if ! command -v dpkg-deb >/dev/null 2>&1 ; then
+    echo "dpkg-deb not found."
+fi
+if ! command -v tar >/dev/null 2>&1 ; then
+    echo "tar not found."
+fi
+
+outputFile="azure-storage-explorer_{{buildVersion}}_x64.deb"
+
+tarFile="${tarFile:-"azure-storage-explorer.tar.gz"}" 
+
+if [ ! -f "$tarFile" ]; then
+    echo "tar file \"$tarFile\" not found"
     exit 1
 fi
 
 # Extract from archive
 mkdir azure-storage-explorer
-tar -xzf $(find ./*.tar.gz) -C azure-storage-explorer
+tar -xzf "$tarFile" -C azure-storage-explorer
+
+buildVersion=$(cat azure-storage-explorer/resources/app/package.json | jq '.version' | tr -d '"')
+outputFile=${outputFile/\{\{buildVersion\}\}/$buildVersion}
 
 # Get package size
 packageSize=$(du -sk azure-storage-explorer | cut -f1)
@@ -54,7 +72,7 @@ find . -type f -printf '"%P" ' | xargs md5sum > DEBIAN/md5sums
 cd ..
 
 # Build
-dpkg -b $buildDir/ azure-storage-explorer_${buildVersion}_x64.deb
+dpkg-deb --build --root-owner-group $buildDir $outputFile
 
 # Remove build dir
 rm -r $buildDir

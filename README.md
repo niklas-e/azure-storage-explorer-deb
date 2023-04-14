@@ -8,7 +8,7 @@ It's annoying to get a tarball to install a program. You won't get menu items, p
 
 ## Notes
 
-I've tested this only on Linux Mint 19, but most likely it will work on other Debian based distros too (for example Ubuntu).
+Initially from @niklas-e. Updated and enhanced with workflow by @kitingChris.
 
 ## How to use
 
@@ -17,5 +17,9 @@ I've tested this only on Linux Mint 19, but most likely it will work on other De
 3. `chmod +x create-deb.sh`
 4. Download the latest Storage Explorer tarball from [https://azure.microsoft.com/en-us/features/storage-explorer/](https://azure.microsoft.com/en-us/features/storage-explorer/)
 5. Copy the tarball to the root of this folder
-6. Execute the create-deb script (and pass the version number) `./create-deb.sh -v 1.4.2`
+6. Execute the create-deb script (and optionally pass the downloaded filename) `./create-deb.sh -f azure-storage-explorer.tar.gz`
 7. Double click your newly created .deb package to install the Azure Storage Explorer :)
+
+## Github Workflow
+
+This repo contains a github workflow that automatically searches for new versions daily and builds them.
