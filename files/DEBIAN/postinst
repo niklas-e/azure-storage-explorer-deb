@@ -1,5 +1,8 @@
 #!/bin/bash
 
-# Link to the binary
-ln -sf '/opt/azure-storage-explorer/StorageExplorer' '/usr/local/bin/azure-storage-explorer'
+# Symlink bin command to /usr/bin
+rm -f /usr/local/bin/azure-storage-explorer
+ln -s /opt/azure-storage-explorer/StorageExplorer /usr/local/bin/azure-storage-explorer
 
+# Fix callpath
+sed -i 's/ROOT\=.*/ROOT=\/opt\/azure-storage-explorer/g' /opt/azure-storage-explorer/StorageExplorer

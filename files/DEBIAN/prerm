@@ -1,5 +1,5 @@
 #!/bin/bash
 
 # Delete the link to the binary
-rm -f '/usr/local/bin/azure-storage-explorer'
+rm -f /usr/local/bin/azure-storage-explorer
 

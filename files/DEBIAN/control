@@ -4,7 +4,7 @@ Architecture: all
 Essential: no
 Section: devel
 Priority: optional
-Depends: libsecret-1-0, libgconf-2-4, libgnome-keyring-common, libgnome-keyring0, dotnet-runtime-2.0|dotnet-runtime-2.1
+Depends: libnss3 (>= 2:3.26), gnupg, apt, libxkbfile1, libsecret-1-0, libgtk-3-0 (>= 3.10.0), libxss1, libgbm1
 Maintainer: Microsoft Corporation
 Installed-Size: {{packageSize}}
 Description: Microsoft Azure Storage Explorer
