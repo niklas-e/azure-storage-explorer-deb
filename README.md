@@ -6,9 +6,10 @@ A .deb packaging template for Azure Storage Explorer
 
 It's annoying to get a tarball to install a program. You won't get menu items, properly registered app or anything on OS level with a simple tarball containing all the binaries. Microsoft hasn't been providing anything else than that, so I decided to create a .deb packaging script at least for my own use.
 
-## Notes
+## Contributors
 
-Initially from [@niklas-e](https://github.com/niklas-e). Updated and enhanced with workflow by [@kitingChris](https://github.com/kitingChris)´.
+- [@niklas-e](https://github.com/niklas-e)
+- [@kitingChris](https://github.com/kitingChris)
 
 ## How to use
 
