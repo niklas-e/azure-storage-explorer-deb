@@ -13,13 +13,19 @@ It's annoying to get a tarball to install a program. You won't get menu items, p
 
 ## How to use
 
+### Option 1: download .deb of latest version
+
+1. Download the latest version ([checked/updated weekly](./.github/workflows/ci.yaml)) from [Releases page](https://github.com/niklas-e/azure-storage-explorer-deb/releases)
+2. Double click the .deb you downloaded to install the Azure Storage Explorer :)
+
+### Option 2: fetch the latest version manually and build deb package
+
 1. `git clone https://github.com/niklas-e/azure-storage-explorer-deb.git`
 2. `cd azure-storage-explorer-deb`
-3. `chmod +x create-deb.sh`
-4. Download the latest Storage Explorer tarball from [https://azure.microsoft.com/en-us/features/storage-explorer/](https://azure.microsoft.com/en-us/features/storage-explorer/)
-5. Copy the tarball to the root of this folder
-6. Execute the create-deb script (and optionally pass the downloaded filename) `./create-deb.sh -f azure-storage-explorer.tar.gz`
-7. Double click your newly created .deb package to install the Azure Storage Explorer :)
+3. Download the latest Storage Explorer tarball from [https://azure.microsoft.com/en-us/features/storage-explorer/](https://azure.microsoft.com/en-us/features/storage-explorer/)
+4. Copy the tarball to the root of this folder
+5. Execute the create-deb script (and optionally pass the downloaded filename) `./create-deb.sh -f azure-storage-explorer.tar.gz`
+6. Double click your newly created .deb package to install the Azure Storage Explorer :)
 
 ## Github Workflow
 
