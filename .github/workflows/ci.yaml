@@ -35,7 +35,8 @@ jobs:
 
       - name: Download latest tar.gz
         run: |
-          url=$(curl -sSX GET https://azure.microsoft.com/en-us/products/storage/storage-explorer | grep LinuxTar | grep -Po '(?<=href\=")[^"]+')
+          linkElement=$(curl -sSX GET https://azure.microsoft.com/en-us/products/storage/storage-explorer | grep -oP '<a[^>]*href="[^"]*"[^>]*>[^<]*Linux-.tar[^<]*</a>')
+          url=$(echo -n $linkElement | sed -n 's/.*href="\([^"]*\)".*/\1/p')
           wget -O azure-storage-explorer.tar.gz $url
       
       - name: Build the debian package
