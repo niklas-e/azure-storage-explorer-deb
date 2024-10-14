@@ -35,7 +35,7 @@ jobs:
 
       - name: Download latest tar.gz
         run: |
-          linkElement=$(curl -sSX GET https://azure.microsoft.com/en-us/products/storage/storage-explorer | grep -oP '<a[^>]*href="[^"]*"[^>]*>[^<]*Linux-.tar[^<]*</a>')
+          linkElement=$(curl -sSX GET https://azure.microsoft.com/en-us/products/storage/storage-explorer | grep -zoP '<a[^>]*href="[^"]*"[^>]*>(?:(?!</a>).)*?Linux-.tar(?:(?!</a>).)*?</a>' | tr -d '\0')
           url=$(echo -n $linkElement | sed -n 's/.*href="\([^"]*\)".*/\1/p')
           wget -O azure-storage-explorer.tar.gz $url
       
