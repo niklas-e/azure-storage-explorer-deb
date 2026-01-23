@@ -35,11 +35,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Download latest tar.gz
+      - name: Download tarball from GitHub release
         run: |
-          linkElement=$(curl -sSX GET https://azure.microsoft.com/en-us/products/storage/storage-explorer | grep -zoP '<a[^>]*href="[^"]*"[^>]*>(?:(?!</a>).)*?Linux-.tar(?:(?!</a>).)*?</a>' | tr -d '\0')
-          url=$(echo -n $linkElement | sed -n 's/.*href="\([^"]*\)".*/\1/p')
-          wget -O azure-storage-explorer.tar.gz $url
+          asset="StorageExplorer-linux-x64.tar.gz"
+          url="https://github.com/microsoft/AzureStorageExplorer/releases/download/${UPSTREAM_VERSION}/${asset}"
+          echo "Downloading ${url}"
+          curl -fsSL "$url" -o azure-storage-explorer.tar.gz
       
       - name: Build the debian package
         run: ./create-deb.sh -f azure-storage-explorer.tar.gz 
