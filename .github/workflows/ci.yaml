@@ -17,7 +17,7 @@ jobs:
           latestVersion=$(curl -s https://api.github.com/repos/microsoft/AzureStorageExplorer/releases/latest | grep -Eo "\"tag_name\": ?\".+\"" | cut -d':' -f2 | sed -s 's/[[:space:]]//g' | sed -s 's/"//g')
           if git tag --list | grep -q "${latestVersion}"; then
               echo "No new version found"
-              echo "nextVersion=null" >> "$GITHUB_OUTPUT"
+              echo "nextVersion=" >> "$GITHUB_OUTPUT"
           else
               echo "New version \"${latestVersion}\" found"
               echo "nextVersion=${latestVersion}" >> "$GITHUB_OUTPUT"
