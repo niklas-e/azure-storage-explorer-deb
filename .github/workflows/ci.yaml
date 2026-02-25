@@ -1,14 +1,14 @@
 name: CI
-on: 
+on:
   schedule:
   - cron: "0 0 * * 1"
   workflow_dispatch:
 
-jobs: 
-  checkVersion: 
+jobs:
+  checkVersion:
     name: Check for new version
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - uses: actions/checkout@v6
 
       - id: get_version
@@ -41,17 +41,17 @@ jobs:
           url="https://github.com/microsoft/AzureStorageExplorer/releases/download/${UPSTREAM_VERSION}/${asset}"
           echo "Downloading ${url}"
           curl -fsSL "$url" -o azure-storage-explorer.tar.gz
-      
+
       - name: Build the debian package
-        run: ./create-deb.sh -f azure-storage-explorer.tar.gz 
-      
+        run: ./create-deb.sh -f azure-storage-explorer.tar.gz
+
       - name: Get package version
         id: get_package_version
         run: |
           version=$(dpkg-deb -I azure-storage-explorer_*_x64.deb | grep -Eo "Version: .*" | cut -d':' -f2 | tr -d ' ')
           echo "version=$version" >> "$GITHUB_OUTPUT"
-      
-      - name: Fetch release notes
+
+      - name: Create release notes
         run: |
           release_url="https://github.com/microsoft/AzureStorageExplorer/releases/tag/${UPSTREAM_VERSION}"
           {
@@ -60,12 +60,11 @@ jobs:
             printf 'Upstream release notes: %s\n' "$release_url"
           } > release-notes.md
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - uses: "softprops/action-gh-release@v2"
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          title: "${{ steps.get_package_version.outputs.version }}"
-          automatic_release_tag: "${{ steps.get_package_version.outputs.version }}"
-          prerelease: false
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          name: "${{ steps.get_package_version.outputs.version }}"
+          tag_name: "${{ steps.get_package_version.outputs.version }}"
           body_path: release-notes.md
-          files: |
-            azure-storage-explorer_*_x64.deb
+          with:
+            files: azure-storage-explorer_*_x64.deb
